@@ -1,0 +1,29 @@
+package com.company;
+
+public class TimesArrayRotated {
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3, 4 , 5, 6 , 7};
+//                {4, 5, 6, 7, 0, 1, 2, 3};
+        System.out.println(arrayRotated(nums) + 1 );
+    }
+    public static int arrayRotated (int[] nums) {
+        int start = 0;
+        int end = nums.length - 1;
+        int first = nums[0];
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if(mid < end && nums[mid] > nums[mid + 1]) {
+                return mid;
+            }
+            if(mid > start && nums[mid] < nums[mid - 1]) {
+                return mid - 1;
+            }
+            if(nums[mid] >= first) {
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
+        }
+        return -1;
+    }
+}
